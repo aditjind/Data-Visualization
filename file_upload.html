@@ -1,0 +1,88 @@
+<html>
+<head>
+	<style>
+		#byte_content {
+		margin: 5px 0;
+		height: 500px;
+		}
+	</style>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="static/css/main.css" type="text/css"/>
+	<script type="text/javascript">
+		document.getElementById("finput").onchange = function () {
+		    document.getElementById("fileinput").value = this.value;
+		};
+	</script>
+</head>
+<body>
+
+	<div id="parent_container">
+		<div id="form_container">
+			<h3> UPLOAD <h3>
+			<form action="http://127.0.0.1:5000/upload/" method="post" enctype="multipart/form-data">
+
+				<div class="btn btn-primary">
+				    <input id="finput" type="file" class="upload" name="file" />
+				</div>
+
+				<!--
+				<div class="cc-selector" id="radio_container">
+			        <input id="visa" type="radio" name="credit-card" value="visa" />
+			        <label class="drinkcard-cc visa" for="visa"></label>
+			        <input id="mastercard" type="radio" name="credit-card" value="mastercard" />
+			        <label class="drinkcard-cc mastercard"for="mastercard"></label>
+			    </div> -->
+
+			    <!-- -->
+				<div class="cc-selector-2" id="radio_container">
+			        <input id="area_i" type="radio" name="charttype" value="area" />
+			        <label class="drinkcard-cc visa" for="area_i" id="area"></label>
+			        <input id="bar_i" type="radio" name="charttype" value="bar" />
+			        <label id="bar" class="drinkcard-cc mastercard" for="bar_i"></label>
+			        <input id="line_i" type="radio" name="charttype" value="line" />
+			        <label id="line" class="drinkcard-cc visa" for="line_i"></label>
+			        <input id="column_i" type="radio" name="charttype" value="column" />
+			        <label id="column" class="drinkcard-cc mastercard" for="column_i"></label>
+			        <input id="scatter_i" type="radio" name="charttype" value="scatter" />
+			        <label id="scatter" class="drinkcard-cc visa" for="scatter_i"></label>
+			        <input id="pie_i" type="radio" name="charttype" value="pie" />
+			        <label id="pie" class="drinkcard-cc mastercard" for="pie_i"></label>
+			        <input id="bubble_i" type="radio" name="charttype" value="bubble" />
+			        <label id="bubble" class="drinkcard-cc mastercard" for="bubble_i"></label>
+			    </div> 
+
+				<input type="submit" value="Submit" class="btn btn-info">
+			</form>
+			
+		</div>
+		<br>
+		<div id="json_container">
+			<h3>File Contents:</h3>
+			<pre id="byte_content"></pre>
+		</div>
+	</div>
+
+<script type="text/javascript">
+  function readSingleFile(evt) {
+    //Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]; 
+
+    if (f) {
+      var r = new FileReader();
+      r.onload = function(e) { 
+	      var contents = e.target.result;
+	      document.getElementById('byte_content').innerHTML = contents; 
+      }
+      r.readAsText(f);
+    } else { 
+      alert("Failed to load file");
+    }
+  }
+
+  document.getElementById('finput').addEventListener('change', readSingleFile, false);
+</script>
+
+</body>
+</html>
